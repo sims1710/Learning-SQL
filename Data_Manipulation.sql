@@ -48,3 +48,8 @@ WHERE id = 4;
 * twitter_handle is the name of the column that is going to be updated
 * @taylorswift13 is the new value that is going to be inserted into the twitter_handle column.
 */
+UPDATE celebs 
+SET twitter_handle = '@taylorswift13' 
+WHERE id = 4; 
+
+SELECT * FROM celebs;
