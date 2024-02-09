@@ -96,3 +96,78 @@ names that begin with the letter ‘A’ up to, but not including ones that begi
 SELECT *
 FROM movies
 WHERE name BETWEEN 'A' AND 'J';
+
+
+-- AND (INTERSECTIOM)
+
+/*
+Sometimes we want to combine multiple conditions in a WHERE clause to make 
+the result set more specific and useful.
+*/
+
+SELECT * 
+FROM movies
+WHERE year BETWEEN 1990 AND 1999
+   AND genre = 'romance';
+
+-- OR (UNION)
+
+/*
+Similar to AND, the OR operator can also be used to combine multiple 
+conditions in WHERE, but there is a fundamental difference:
+
+- AND operator displays a row if all the conditions are true.
+- OR operator displays a row if any condition is true.
+Suppose we want to check out a new movie or something action-packed:
+*/
+
+SELECT *
+FROM movies
+WHERE year > 2014
+   OR genre = 'action';
+
+
+-- ORDER BY
+-- For example, if we want to sort everything by the movie’s title from A through Z:
+
+SELECT *
+FROM movies
+ORDER BY name;
+
+/*
+ORDER BY is a clause that indicates you want to sort the result 
+set by a particular column. name is the specified column.
+
+- DESC is a keyword used in ORDER BY to sort the results in 
+descending order (high to low or Z-A).
+- ASC is a keyword used in ORDER BY to sort the results
+in ascending order (low to high or A-Z).
+*/
+
+-- LIMIT
+-- To cap the number of rows in the result
+
+SELECT *
+FROM movies
+LIMIT 10;
+
+-- CASE
+/*
+A CASE statement allows us to create different outputs (usually in 
+the SELECT statement). It is SQL’s way of handling if-then logic.
+
+- Each WHEN tests a condition and the following THEN gives us the 
+string if the condition is true.
+- The ELSE gives us the string if all the above conditions are false.
+- The CASE statement must end with END.
+
+- To shorten the name of the column, we can rename the column using AS.
+*/
+
+SELECT name,
+ CASE
+  WHEN imdb_rating > 8 THEN 'Fantastic'
+  WHEN imdb_rating > 6 THEN 'Poorly Received'
+  ELSE 'Avoid at All Costs'
+ END AS 'Review'
+FROM movies;
